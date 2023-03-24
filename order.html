@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+        background-image: url("images/bg\ company.jfif");
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: aliceblue;
+      }
+  
+      #q1 {
+        color: white;
+        margin-top: 200px;
+  
+      }
+  
+      .modal-dialog {
+        background-image: url(images/modal\ bg2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+  
+      .track {
+        margin-top: 10px;
+      }
+  
+      #progress {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em;
+        position: relative;
+        text-align: center;
+      }
+  
+      #progress li {
+        width: 10%;
+        position: relative;
+        top: 3px;
+      }
+  
+      #progress li::before {
+        content: '\2713';
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        width: 20px;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: bold;
+        height: 20px;
+        background-color: rgb(120, 125, 122);
+        color: aliceblue;
+        border-radius: 50%;
+        z-index: 11111;
+      }
+  
+      #progress li:first-child::before {
+        content: '\2713';
+        font-weight: bold;
+        background-color: rgb(141, 233, 164);
+      }
+  
+      #progress::before {
+        content: '';
+        position: absolute;
+        top: 9px;
+        width: 0%;
+        margin-left: 1px;
+        height: 5px;
+        background: green;
+        z-index: 111;
+      }
+  
+      #progress::after {
+        content: '';
+        position: absolute;
+        top: 9px;
+        width: 89%;
+        height: 5px;
+        background: white;
+      }
+  
+      .lists {
+        margin-left: 30px;
+        display: flex;
+        gap: 2em;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+  
+      .list {
+  
+        gap: 2em;
+        flex: 1 1 80px;
+  
+      }
+  
+      .list p {
+        font: size 1.1em;
+        ;
+  
+      }
+  
+      .list img {
+        width: 50px;
+      }
+  
+      .track1 {
+        margin-top: 10px;
+      }
+  
+      #progress1 {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em;
+        position: relative;
+        text-align: center;
+      }
+  
+      #progress1 li {
+        width: 10%;
+        position: relative;
+        top: 3px;
+      }
+  
+      #progress1 li::before {
+        content: '\26A0';
+        position: absolute;
+        align-items: center;
+        display: flex;
+        margin-top: -15px;
+        font-size: 25px;
+        z-index: 11111;
+      }
+  
+      #progress1 li:first-child::before {
+        content: '\2713';
+        font-weight: bold;
+        font-size: 1rem;
+        width: 20px;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: bold;
+        height: 20px;
+        margin-top: 0px;
+        background-color: rgb(120, 124, 121);
+        color: aliceblue;
+        border-radius: 50%;
+        background-color: rgb(87, 212, 129);
+      }
+  
+      #progress1::before {
+        content: '';
+        position: absolute;
+        top: 9px;
+        width: 15%;
+        margin-left: 0.5px;
+        height: 5px;
+        background: green;
+        z-index: 111;
+      }
+  
+      #progress1::after {
+        content: '';
+        position: absolute;
+        top: 9px;
+        width: 89%;
+        height: 5px;
+        background: white;
+      }
+  
+      .lists {
+        margin-left: 30px;
+        display: flex;
+        gap: 1em;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+  
+      .list {
+  
+        gap: 1em;
+        flex: 1 1 80px;
+  
+      }
+  
+      .list p {
+        font: size 1.1em;
+        ;
+  
+      }
+  
+      .list img {
+        width: 50px;
+      }
+  </style>
+</head>
+<body>
+    <div class="container">
+		<h1>Customer Tracking System</h1>
+		<div class="form-group">
+    <label for="orderId">Enter Customer Order ID:</label>
+    <div class="input-group">
+        <input type="text" class="form-control" id="orderId" name="orderId">
+        <div class="input-group-append">
+            <button type="button" class="btn btn-primary" id="trackBtn" onclick="trackOrder()">Track Order</button>
+        </div>
+    </div>
+</div>
+		</div>
+        <div data-backdrop="static" data-keyboard="false" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" id="pop">
+        
+              <div class="modal-body">
+                <button type="button" class=" btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"
+                  style="float:right;"></button>
+                <h3 id="exampleModalLabel" style="color: white; margin-left: 255px;">Customer Order Portal</h3><br><br>
+        
+              </div>
+		<div id="customerDetails">
+			<!-- Customer details will be displayed here -->
+		</div>
+	</div>
+    </div>
+    </div>
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="customer.js"></script>
+</body>
+</html>
+</body>
+<script>// Sample customer data
+    let customerList = [
+        {
+            orderNumber: "1234",
+            name: "John Doe",
+            email: "johndoe@example.com",
+            phone: "555-555-5555",
+            address: "123 Main St, Anytown USA"
+        },
+        {
+            orderNumber: "5678",
+            name: "Jane Smith",
+            email: "janesmith@example.com",
+            phone: "555-555-5556",
+            address: "456 Elm St, Anytown USA"
+        }
+    ];
+    
+    function getCustomer() {
+        let orderNumber = document.getElementById("orderNumber").value;
+        let customer = findCustomerByOrderNumber(orderNumber);
+        
+        if (customer !== null) {
+            // Display customer details
+            let customerDetails = `
+                <h2>Customer Details</h2>
+                <p><strong>Name:</strong> ${customer.name}</p>
+                <p><strong>Email:</strong> ${customer.email}</p>
+                <p><strong>Phone:</strong> ${customer.phone}</p>
+                <p><strong>Address:</strong> ${customer.address}</p>
+            `;
+            $("#customerDetails").html(customerDetails);
+        } else {
+            // Display error message if customer not found
+            let error = `
+                <div class="alert alert-danger" role="alert">
+                    Customer not found.
+                </div>
+            `;
+            $("#customerDetails").html(error);
+        }
+    }
+    
+    function findCustomerByOrderNumber(orderNumber) {
+        for (let i = 0; i < customerList.length; i++) {
+            if (customerList[i].orderNumber === orderNumber) {
+                return customerList[i];
+            }
+        }
+        return null;
+    }
+    </script>
+</html>

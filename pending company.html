@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/
+jquery/3.5.1/jquery.min.js"></script>
+
+
+  <style>
+    body {
+      background-image: url("images/bg\ company.jfif");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #q1 {
+      color: white;
+      margin-top: 200px;
+
+    }
+
+    .modal-dialog {
+      background-image: url(images/modal\ bg2.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .track {
+      margin-top: 10px;
+    }
+
+    #progress {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5em;
+      position: relative;
+      text-align: center;
+    }
+
+    #progress li {
+      width: 10%;
+      position: relative;
+      top: 3px;
+    }
+
+    #progress li::before {
+      content: '\2713';
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 20px;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: bold;
+      height: 20px;
+      background-color: rgb(120, 125, 122);
+      color: aliceblue;
+      border-radius: 50%;
+      z-index: 11111;
+    }
+
+    #progress li:first-child::before {
+      content: '\2713';
+      font-weight: bold;
+      background-color: rgb(141, 233, 164);
+    }
+
+    #progress::before {
+      content: '';
+      position: absolute;
+      top: 9px;
+      width: 0%;
+      margin-left: 1px;
+      height: 5px;
+      background: green;
+      z-index: 111;
+    }
+
+    #progress::after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      width: 89%;
+      height: 5px;
+      background: white;
+    }
+
+    .lists {
+      margin-left: 30px;
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .list {
+
+      gap: 2em;
+      flex: 1 1 80px;
+
+    }
+
+    .list p {
+      font: size 1.1em;
+      ;
+
+    }
+
+    .list img {
+      width: 50px;
+    }
+
+    .track1 {
+      margin-top: 10px;
+    }
+
+    #progress1 {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5em;
+      position: relative;
+      text-align: center;
+    }
+
+    #progress1 li {
+      width: 10%;
+      position: relative;
+      top: 3px;
+    }
+
+    #progress1 li::before {
+      content: '\26A0';
+      position: absolute;
+      align-items: center;
+      display: flex;
+      margin-top: -15px;
+      font-size: 25px;
+      z-index: 11111;
+    }
+
+    #progress1 li:first-child::before {
+      content: '\2713';
+      font-weight: bold;
+      font-size: 1rem;
+      width: 20px;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: bold;
+      height: 20px;
+      margin-top: 0px;
+      background-color: rgb(120, 124, 121);
+      color: aliceblue;
+      border-radius: 50%;
+      background-color: rgb(87, 212, 129);
+    }
+
+    #progress1::before {
+      content: '';
+      position: absolute;
+      top: 9px;
+      width: 15%;
+      margin-left: 0.5px;
+      height: 5px;
+      background: green;
+      z-index: 111;
+    }
+
+    #progress1::after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      width: 89%;
+      height: 5px;
+      background: white;
+    }
+
+    .lists {
+      margin-left: 30px;
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .list {
+
+      gap: 1em;
+      flex: 1 1 80px;
+
+    }
+
+    .list p {
+      font: size 1.1em;
+      ;
+
+    }
+
+    .list img {
+      width: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="q1">
+    <center>
+      <h1>What is your customer order number?</h1><br>
+      <p style="margin-left: 90px; text-decoration: underline;font-weight: bold;line-height: 0px;">by Hair &
+        Compounds,Inc. </p><br><br><br>
+      <div class="form-group">
+        <input type="text" placeholder="customer Id" style="width: 500px;height: 50px;" id="customer">
+        <label style="width: 50px;" ></label>
+        <button type="button" onclick="validation()" btn data-bs-toggle="modal"
+            data-bs-target="#exampleModal" id="mybtn"
+            style="height: 55px;background-color: rgb(78, 78, 192); color: white;width: 100px;margin-left: -60px;">
+            Track
+          </button>
+
+      </div>
+
+
+
+    </center>
+  </div><br><br>
+
+  <!-- Button trigger modal -->
+
+
+  <!-- Modal -->
+
+  <div data-backdrop="static" data-keyboard="false" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="pop">
+
+      <div class="modal-body">
+        <button type="button" class=" btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"
+          style="float:right;"></button>
+        <h3 id="exampleModalLabel" style="color: white; margin-left: 255px;">Customer Order Portal</h3><br><br>
+
+      </div>
+      <div class="container" style="color: white;">
+      <div class="row" style="color: white; margin-left: 30px; " id="orderStatus">
+          <table style="margin-left: 20px;">
+            <tr>
+              <th>Order Id </th>
+              <th>Client Name </th>
+              <th>Order Date </th>
+              <th>Due Date</th>
+              <th>Description</th>
+            </tr>
+            <tr  id="customerTableBody">
+              <td> &nbsp;</td>
+              <td> &nbsp;</td>
+              <td> &nbsp;</td>
+              <td> &nbsp;</td>
+              <td>Customer curly hand <br> tied weft,Thin track,<br> 22"6N/10B Rooted 1"</td>
+            </tr>
+          </table>
+
+        </div>
+        
+        <h5 style="margin-left: 255px; text-decoration: underline;">Updates From Our Factory</h5><br>
+
+        <div style="font-weight: bold;margin-left: 20px;line-height: 10px;">
+          <p>Description: &nbsp;Custom Poly Curly</p><br>
+          <p>Stages Completed: &nbsp;1 to 6</p>
+        </div>
+
+        <div class="track1">
+          <ul id="progress1" class="text-center">
+            <li class="active"></li>
+            <li class="active"></li>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+
+        </div>
+        <div class="lists" style="color: rgb(244, 240, 240);">
+          <div class="list">
+            <p>Bleach Stage</p>
+          </div>
+          <div class="list">
+            <p>Dye Stage</p>
+          </div>
+          <div class="list">
+            <p>Plug/Weft Stage</p>
+          </div>
+          <div class="list">
+            <p>Final QC <br> Stage</p>
+          </div>
+          <div class="list">
+            <p>Stock Stage</p>
+
+          </div>
+          <div class="list">
+            <p>Ship Stage</p>
+          </div>
+
+
+
+        </div><br>
+
+        <br><br>
+        <center>
+          <h4>Status</h4>
+        </center><br>
+        <div class="track">
+          <ul id="progress" class="text-center">
+            <li class="active"></li>
+            <li class="active"></li>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+          </ul>
+
+        </div>
+        <div class="lists" style="color: rgb(175, 172, 172);">
+          <div class="list">
+            <img src="images/sent order.png" alt="" srcset="" height="40px" width="40px"><br>
+            <p> <br></p>
+            <p style="font-size: 11px;">Sent to production</p>
+          </div>
+          <div class="list">
+            <img src="images/factory.png" alt="" srcset="" height="40px" width="40px"><br>
+            <p><br></p>
+            <p style="font-size: 11px;"> Enroute to H&C</p>
+          </div>
+          <div class="list">
+            <img src="images/quality 1.png" alt="" srcset="" height="40px" width="40px" style="margin-top: 15px;"><br>
+            <p> <br></p>
+            <p style="font-size: 11px;"> Arrived in quality inspection</p>
+          </div>
+          <div class="list">
+            <img src="images/ship1.png" alt="" srcset="" height="40px" width="40px"
+              style="margin-left: 35px; margin-top:20px ;"><br>
+            <p style="margin-left: 35px;"> <br></p>
+            <p style="font-size: 11px; margin-left: 31px;">Ready to ship to customer</p>
+          </div>
+          <div class="list">
+            <img src="images/delivered 2.png" alt="" srcset="" height="40px" width="40px" style="margin-left: 32px;"
+              style="margin-top: 15px;"><br>
+            <p style="margin-left: 40px;"> <br></p>
+            <p style="font-size:11px;margin-left: 32px;">Ship to customer</p>
+          </div><br><br><br><br>
+
+
+
+        </div><br>
+       
+
+      </div>
+      </div>
+
+    </div>
+
+  </div><br>
+
+
+  </div>
+
+
+</body>
+
+<script>
+  // function validation() {
+  //   var customer = document.getElementById("customer").value;
+  //   x = /^([0-9])+$/
+  //   if (customer == "") {
+  //     alert("Please enter your customer Id");
+  //   }
+  //   else if (!x.test(customer)) {
+  //     alert("use only numbers");
+  //   }
+
+
+  // }
+ 
+  function getCustomerDetails(customerId) {
+  // Replace this with your code to retrieve the customer details from a database or an API
+  const customers = {
+    'customer-1': {
+      orderId: '12345',
+      clientName: 'John Smith',
+      orderDate: '2022-01-01',
+      dueDate: '2022-01-31',
+      description: 'Custom Poly Curly'
+    },
+    'customer-2': {
+      orderId: '67890',
+      clientName: 'Jane Doe',
+      orderDate: '2022-02-01',
+      dueDate: '2022-02-28',
+      description: 'Custom Poly Straight'
+    }
+  };
+
+  const customer = customers[customerId];
+
+  // Update the HTML elements in the modal with the customer details
+  const orderIdElement = document.querySelector('#exampleModal table tr:nth-child(2) td:nth-child(1)');
+  orderIdElement.textContent = customer.orderId;
+
+  const clientNameElement = document.querySelector('#exampleModal table tr:nth-child(2) td:nth-child(2)');
+  clientNameElement.textContent = customer.clientName;
+
+  const orderDateElement = document.querySelector('#exampleModal table tr:nth-child(2) td:nth-child(3)');
+  orderDateElement.textContent = customer.orderDate;
+
+  const dueDateElement = document.querySelector('#exampleModal table tr:nth-child(2) td:nth-child(4)');
+  dueDateElement.textContent = customer.dueDate;
+
+  const descriptionElement = document.querySelector('#exampleModal table tr:nth-child(2) td:nth-child(5)');
+  descriptionElement.textContent = customer.description;
+
+  // Change the progress bar color based on the customer
+  const progressElements = document.querySelectorAll('#exampleModal #progress li');
+  if (customerId === 'customer-1') {
+    progressElements[0].classList.add('active');
+    progressElements[1].classList.add('active');
+    progressElements[2].classList.add('active');
+    progressElements[3].classList.remove('active');
+    progressElements[4].classList.remove('active');
+  } else if (customerId === 'customer-2') {
+    progressElements[0].classList.add('active');
+    progressElements[1].classList.add('active');
+    progressElements[2].classList.add('active');
+    progressElements[3].classList.add('active');
+    progressElements[4].classList.remove('active');
+  }
+}
+
+
+</script>
+
+
+
+</html>
